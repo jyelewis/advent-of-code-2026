@@ -1,0 +1,24 @@
+{
+  "name": "advent-of-code-2026",
+  "version": "1.0.0",
+  "repository": "git@github.com:jyelewis/advent-of-code-2026.git",
+  "author": "Jye Lewis <jye@jyelewis.com>",
+  "license": "MIT",
+  "engines": {
+    "node": ">=26"
+  },
+  "scripts": {
+    "generate-day": "tsx template/generate-day.ts",
+    "test": "tsx --test **/*.test.ts",
+    "test:coverage": "tsx --test --experimental-test-coverage **/*.test.ts",
+    "lint:check": "prettier --check .",
+    "lint:fix": "prettier --write .",
+    "check": "yarn tsc && yarn lint:check && yarn test"
+  },
+  "dependencies": {
+    "@types/node": "^26.6.7",
+    "prettier": "^3.10.1",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  }
+}

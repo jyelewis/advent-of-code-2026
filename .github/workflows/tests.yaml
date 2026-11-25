@@ -1,0 +1,38 @@
+name: Tests
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Decrypt secrets
+        uses: sliteteam/github-action-git-crypt-unlock@1.2.0
+        env:
+          GIT_CRYPT_KEY: ${{ secrets.GIT_CRYPT_KEY }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: "26"
+          cache: "yarn"
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Check types
+        run: yarn tsc
+
+      - name: Check formatting
+        run: yarn lint:check
+
+      - name: Run tests
+        run: yarn test
