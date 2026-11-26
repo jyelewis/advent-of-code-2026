@@ -20,6 +20,14 @@ export class Direction {
     throw new Error(`Cannot rotate non-cardinal direction ${this.toString()}`);
   }
 
+  rotate180() {
+    if (this.equals(Direction.UP)) return Direction.DOWN;
+    if (this.equals(Direction.RIGHT)) return Direction.LEFT;
+    if (this.equals(Direction.DOWN)) return Direction.UP;
+    if (this.equals(Direction.LEFT)) return Direction.RIGHT;
+    throw new Error(`Cannot rotate non-cardinal direction ${this.toString()}`);
+  }
+
   toString() {
     const char = this.toChar();
     if (char !== "?") {
